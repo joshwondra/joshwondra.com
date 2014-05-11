@@ -56,7 +56,7 @@ a {
 header {
 	color: #174469;
 	font-family: "League Gothic", helvetica, sans-serif;
-	src: url("fonts/LeagueGothic-Regular.otf") format("opentype");
+	src: url("../fonts/LeagueGothic-Regular.otf") format("opentype");
 	font-size: 5em;
 	text-transform: uppercase;
 }
@@ -71,7 +71,7 @@ header a:visited {
 	clear: both;
 	text-transform: uppercase;
 	font-family: "Colaborate-Regular", helvetica, sans-serif;
-	src: url("fonts/ColabReg.otf") format("opentype");
+	src: url("../fonts/ColabReg.otf") format("opentype");
 	font-size: 1.2em;
 }
 
@@ -103,7 +103,7 @@ header a:visited {
 #content {
 	margin-top: 30px;
 	font-family: "Colaborate-Thin", helvetica, sans-serif;
-	src: url("fonts/ColabThi.otf") format("opentype");
+	src: url("../fonts/ColabThi.otf") format("opentype");
 }
 
 #home-photo {
@@ -118,7 +118,7 @@ header a:visited {
 #copy a{
 	color: #1c67a7;
 	font-family: "Colaborate-Regular", helvetica, sans-serif;
-	src: url("fonts/ColabReg.otf") format("opentype");
+	src: url("../fonts/ColabReg.otf") format("opentype");
 }
 
 #copy a:hover{
@@ -150,6 +150,6 @@ small {
 	text-align: right;
 	background-color; black;
 	font-family: "Colaborate-Regular", helvetica, sans-serif;
-	src: url("fonts/ColabReg.otf") format("opentype");
+	src: url("../fonts/ColabReg.otf") format("opentype");
 	padding-top: 30px;
 }
