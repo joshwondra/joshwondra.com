@@ -36,7 +36,7 @@ h1 {
 }
 
 h2 {
-	font-size: 2em;
+	font-size: 1.5em;
 	line-height: 100%;
 	padding-bottom: 20px;	
 }
@@ -45,7 +45,7 @@ h2 {
 
 @font-face {
 	font-family: "Montserrat";
-	src: url("../fonts/Montserrat-Regular.otf") format("opentype");
+	src: url("../fonts/Montserrat-Light.otf") format("opentype");
 }
 
 /*@font-face {
@@ -75,9 +75,8 @@ a {
 /* 8. BANNER */
 
 header {
-	color: #174469;
+	color: #043c6b;
 	font-family: "Montserrat", helvetica, sans-serif;
-	font-size: 5em;
 	text-transform: uppercase;
 }
 
@@ -91,7 +90,7 @@ header a, a:visited {
 	clear: both;
 	text-transform: uppercase;
 	font-family: "Montserrat", helvetica, sans-serif;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 #nav li {
@@ -122,6 +121,7 @@ header a, a:visited {
 #content {
 	margin-top: 30px;
 	font-family: "Montserrat", helvetica, sans-serif;
+	color: #333a40;
 }
 
 #home-photo {
@@ -143,7 +143,7 @@ header a, a:visited {
 }
 
 #copy p{
-	font-size:1.4em;
+	font-size:1.2em;
 	line-height: 120%;
 	padding-bottom: 20px;
 }
