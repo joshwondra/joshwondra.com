@@ -44,6 +44,11 @@ h2 {
 /* 3. TYPOGRAPHY */
 
 @font-face {
+	font-family: "Montserrat";
+	src: url("../fonts/Montserrat-Regular.otf") format("opentype");
+}
+
+/*@font-face {
 	font-family: "League Gothic";
 	src: url("../fonts/LeagueGothic-Regular.otf") format("opentype");
 }
@@ -56,7 +61,7 @@ h2 {
 @font-face {
 	font-family: "Colaborate-Regular";
 	src: url("../fonts/ColabReg.otf") format("opentype");
-}
+}*/
 
 /* 4. LINKS */
 
@@ -71,7 +76,7 @@ a {
 
 header {
 	color: #174469;
-	font-family: "League Gothic", helvetica, sans-serif;
+	font-family: "Montserrat", helvetica, sans-serif;
 	font-size: 5em;
 	text-transform: uppercase;
 }
@@ -85,7 +90,7 @@ header a, a:visited {
 #nav {
 	clear: both;
 	text-transform: uppercase;
-	font-family: "Colaborate-Regular", helvetica, sans-serif;
+	font-family: "Montserrat", helvetica, sans-serif;
 	font-size: 1.2em;
 }
 
@@ -116,7 +121,7 @@ header a, a:visited {
 
 #content {
 	margin-top: 30px;
-	font-family: "Colaborate-Thin", helvetica, sans-serif;
+	font-family: "Montserrat", helvetica, sans-serif;
 }
 
 #home-photo {
@@ -130,7 +135,7 @@ header a, a:visited {
 
 #copy a{
 	color: #1c67a7;
-	font-family: "Colaborate-Regular", helvetica, sans-serif;
+	font-family: "Montserrat", helvetica, sans-serif;
 }
 
 #copy a:hover{
@@ -162,6 +167,6 @@ small {
 	text-align: right;
 	background-color; black;
 	color: #8A8686;
-	font-family: "Colaborate-Regular", helvetica, sans-serif;
+	font-family: "Montserrat", helvetica, sans-serif;
 	padding-top: 30px;
 }
