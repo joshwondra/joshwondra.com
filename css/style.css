@@ -12,6 +12,8 @@ body {
 	font-size: 100%;
 	background: #fcfbf7;
 	margin: 0;
+	line-height: 1.4;
+	color:  #716F6E;
 }
 
 #omnibus{
@@ -29,15 +31,19 @@ body {
 
 /* 2. HEADINGS */
 
+h1, h2, h3, h4 {
+	line-height: 1.25;
+	font-family: "Montserrat", helvetica, sans-serif;
+	color: #210c00;
+}
+
 h1 {
 	font-size: 2.5em;
-	line-height: 100%;
  	padding-bottom: 20px;
 }
 
 h2 {
 	font-size: 1.5em;
-	line-height: 100%;
 	padding-bottom: 20px;	
 }
 
@@ -120,8 +126,7 @@ header a, a:visited {
 
 #content {
 	margin-top: 30px;
-	font-family: "Montserrat", helvetica, sans-serif;
-	color: #210c00;
+	font-family: Verdana, helvetica, sans-serif;
 }
 
 #home-photo {
@@ -143,8 +148,6 @@ header a, a:visited {
 }
 
 #copy p{
-	font-size:1.2em;
-	line-height: 120%;
 	padding-bottom: 20px;
 }
 
