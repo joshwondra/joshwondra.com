@@ -10,10 +10,13 @@ head {
 
 body {
 	font-size: 100%;
-	background: #fcfbf7;
+	background: -webkit-radial-gradient(#bbe5e2, #6cb3af); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(#bbe5e2, #6cb3af); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(#bbe5e2, #6cb3af); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(#bbe5e2, #6cb3af); /* Standard syntax */
 	margin: 0;
 	line-height: 1.4;
-	color:  #716F6E;
+	color:  white;
 }
 
 #omnibus{
@@ -31,19 +34,26 @@ body {
 
 /* 2. HEADINGS */
 
-h1, h2, h3, h4 {
+h1 {
 	line-height: 1.25;
-	font-family: "Montserrat", helvetica, sans-serif;
-	color: #210c00;
+	font-family: "Cubano", helvetica, sans-serif;
+	color: #363636;
+}
+
+h2, h3, h4 {
+	line-height: 1.25;
+	font-family: "Source Sans Pro", Cubano, sans-serif;
+	font-weight: bold;
+	color: #363636;
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 3em;
  	padding-bottom: 20px;
 }
 
 h2 {
-	font-size: 1.5em;
+	font-size: 1.75em;
 	padding-bottom: 20px;	
 }
 
@@ -52,6 +62,16 @@ h2 {
 @font-face {
 	font-family: "Montserrat";
 	src: url("../fonts/Montserrat-Light.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("../fonts/SourceSansPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Cubano";
+	src: url("../fonts/Cubano-Regular.otf") format("opentype");	
 }
 
 /*@font-face {
@@ -81,13 +101,20 @@ a {
 /* 8. BANNER */
 
 header {
-	color: #210c00;
-	font-family: "Montserrat", helvetica, sans-serif;
 	text-transform: uppercase;
+	margin-bottom: 50px;
+}
+
+header img {
+	height:70%;
+	width:70%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 header a, a:visited {
-	color: #210c00;
+	color: #7acdc8;
 }
 
 /* 9. NAVIGATION */
@@ -95,7 +122,7 @@ header a, a:visited {
 #nav {
 	clear: both;
 	text-transform: uppercase;
-	font-family: "Montserrat", helvetica, sans-serif;
+	font-family: "Source Sans Pro", helvetica, sans-serif;
 	font-size: 1em;
 }
 
@@ -104,21 +131,21 @@ header a, a:visited {
 }
 
 #nav a {
-	color: #f2a600;
+	color: #363636;
 	text-align: center;
 	padding: 3px 10px;
-	margin-right: 15px;
+	margin-right: 10px;
 	border-radius: 4px;
 }
 
 #nav a:hover {
 	color: white;
-	background-color: #f2cc79;
+	background-color: #696969;
 }
 
 #nav a#current-page {
 	color: white;
-	background-color: #f2a600;
+	background-color: #363636;
 }
 
 
@@ -126,7 +153,7 @@ header a, a:visited {
 
 #content {
 	margin-top: 30px;
-	font-family: Verdana, helvetica, sans-serif;
+	font-family: "Source Sans Pro", helvetica, sans-serif;
 }
 
 #home-photo {
@@ -139,12 +166,12 @@ header a, a:visited {
 }
 
 #copy a{
-	color: #f2a600;
-	font-family: "Montserrat", helvetica, sans-serif;
+	color: #bfb300;
+	font-weight: bold;
 }
 
 #copy a:hover{
-	color: #f2cc79;
+	color: #d4c600;
 }
 
 #copy p{
@@ -157,7 +184,7 @@ em {
 
 .contact {
 	font-style: normal;
-	color: #1c67a7;
+	color: #bfb300;
 }
 
 
@@ -169,7 +196,7 @@ small {
 #copyright {
 	text-align: right;
 	background-color; black;
-	color: #8A8686;
-	font-family: "Montserrat", helvetica, sans-serif;
+	color: #363636;
+	font-family: "Cubano", helvetica, sans-serif;
 	padding-top: 30px;
 }
