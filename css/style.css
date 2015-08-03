@@ -169,12 +169,14 @@ header img {
 }
 
 #copy a{
-	color: #bfb300;
+/*	color: #bfb300;*/
+	color: #7acdc8;
 	font-weight: bold;
 }
 
 #copy a:hover{
-	color: #d4c600;
+/*	color: #d4c600;*/
+	color: #8ae5df;
 }
 
 #copy p{
