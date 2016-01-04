@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="css/IGstudy.css">
+	<noscript>Sorry, your browser does not support JavaScript!</noscript>
+	
+</head>
+
+
+<body>
+
+<div class="slide" id="StartPage">
+<!--	
+	<form action="SubjectInfo.php" method="post" novalidate> 
+	-->
+	<form method="post" id="SubjectInfo" novalidate>
+	Subject ID: <input required type="text" autocomplete="off" name="SubjectID"><br>
+	Condition: 
+		<select name = "condition" required>
+			<option value="default" selected>(select one)</option>
+			<option value="IGhighID">Ingroup, high identification</option>
+			<option value="IGlowID">Ingroup, low identification</option>
+			<option value="OGhighID">Outgroup, high identification</option>
+			<option value="OGlowID">Outgroup, low identification</option>
+		</select></br>
+	Experimenter Name: <input required type="text" autocomplete="off" name="experimenter"><br>
+	<input type="submit" value="Submit">
+	</form>
+</div>
+
+<div class="slide" id="instructions">
+	<h1>Welcome to the Study</h1>
+	<h2>In this experiment, we are interested in how perceptual differences are related to personality differences.</h2>
+	<p>On the next page you will see a spinning dancer. Which way is she spinning?</p> 
+	<p>As soon as you click the Start button, look at the dancer and give your immediate, intuitive answer about whether you think she is spinning clockwise or counterclockwise.</p> 
+	<!--
+	<p class="block-text" id="legal">(She might appear to you to be spinning both ways, so just give your immediate reaction about which direction you saw her spin first)</p>
+		-->
+	<button type="button" onclick="$('#instructions').css('display','none');$('#dancer').css('display','block');">Start</button>
+</div>
+
+<div class="slide" id="dancer">
+	<div id="dancer.content">
+	<h1>Which way is she spinning?</h1>
+	<img src="img/dancer.gif" height="300" width="225" />
+	<!--
+	<form action="dancer.php" method="post" novalidate>
+	-->
+	<form id="groupInfo" method="post" novalidate>
+		<input type="radio" name="group" value="clock">Clockwise
+		<br />
+		<input type="radio" name="group" value="countclock">Counterclockwise
+	</form>
+	</div>
+</div>
+
+
+
+<div class="slide" id="persInstructions">
+	<h1 id="group">Group</h1>
+	<p>People like you share some perceptual characteristics that make you different from people who see the dancer spin the other way</p>
+	<p>Now you will answer some questions to see if you also share personalities with people in your group</p>
+	<p>You will get the chance to see how your answers compare to others who are in your group</p>	
+	<button id="beginPers" type="button">Begin</button>
+</div>
+
+<div class="slide" id="personality">
+	<h1>Please answer the following 10 personality questions</h1>
+	<p id="samediff"></p>
+	<p id="majgroup">What did the majority of people in your group answer?</p>
+	<p id="question"></p>
+	<form id="TFresp" method="post" novalidate>True <input type="radio" name="answer" value="T"> <input type="radio" name="answer" value="F"> False</form>
+</div>
+
+<div class="slide" id="summary">
+	<h1 id="similarity"></h1>
+	<p>Please answer the following questions</p>
+	<form id="identification" method="post" novalidate>
+		<p>I am proud to be a GROUP </p>
+		<p>Strongly disagree<input type="range" min="0" max="100" value="50" />Strongly agree</p>
+		<p>Being a GROUP is an important part of my identity</p>
+		<p>Strongly disagree<input type="range" min="0" max="100" value="50" />Strongly agree</p>
+		<p>I feel close to other GROUP </p>
+		<p>Strongly disagree<input type="range" min="0" max="100" value="50" />Strongly agree</p>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+<div class="slide" id="end">
+	<h1>You have completed this part of the study</h1>
+	<p>Please let the experimenter know that you have finished</p>
+</div>
+
+<div class="slide" id="reminder">
+	<h1 id="groupReminder"></h1>
+</div>
+	
+
+
+<!-- JavaScript -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+
+var cond;
+
+//REGISTRATION
+// Submit the form and move on to intro screen
+$('#SubjectInfo').submit(function() {
+	var SID=$('#SubjectInfo').find('input[name="SubjectID"]').val();
+	cond=$('#SubjectInfo').find('[name="condition"]').val();
+	var exp=$('#SubjectInfo').find('input[name="experimenter"]').val();
+/*
+	if(isNaN(SID)==true || SID=="")
+		{
+		alert("Enter the subject's ID number");
+		return false;
+		};
+	if (cond=="default")
+		{
+		alert("Select subject condition");
+		return false;
+		};
+	if (exp=="")
+		{alert("Enter the experimenter name");
+		return false;
+		}; 
+	*/
+	/*$.post("http://localhost/test.php", {SubjectID:SID, condition:condition, experimenter:exp});*/
+	$('#StartPage').css('display', 'none');
+	$('#instructions').css('display', 'block')
+	return false;
+});	
+
+//DANCER
+
+$('#groupInfo').click(function() {
+	$('#groupInfo').submit(function(){
+		//$.post("http://localhost/test.php", {GroupSel:groupChosen});
+	});
+	/*var groupChosen=$('input[name="group"]:checked').val();*/
+	var groupChosen=$('input[name="group"]:checked').val();
+	$('#dancer').css('display', 'none');
+	$('#persInstructions').css('display', 'block');
+	if(groupChosen=="clock")
+		{
+			$('#group').html('You are a Clockwise Perceiver');
+			$('#groupReminder').html('Clockwise Group');
+		}
+	else if(groupChosen=="countclock")
+		{
+			$('#group').html('You are a Counterclockwise Perceiver');
+			$('#groupReminder').html('Counterclockwise Group');
+		}  
+});	
+
+//Personality Questionnaire
+var PQ = [
+	'Q1: I see myself as someone who is reserved',
+	'Q2: I see myself as someone who is generally trusting',
+	'Q3: I see myself as someone who tends to be lazy',
+	'Q4: I see myself as someone who is relaxed and handles stress well',
+	'Q5: I see myself as someone who has few artistic interests',
+	'Q6: I see myself as someone who is outgoing and sociable',
+	'Q7: I see myself as someone who tends to find fault with others',
+	'Q8: I see myself as someone who does a thorough job',
+	'Q9: I see myself as someone who gets nervous easily',
+	'Q10: I see myself as someone who has an active imagination'
+];
+
+
+
+var highID = [
+	'63% of the people in your group gave the same answer',
+	'22% of the people in your group gave the same answer',
+	'72% of the people in your group gave the same answer',
+	'80% of the people in your group gave the same answer',
+	'94% of the people in your group gave the same answer',
+	'48% of the people in your group gave the same answer',
+	'88% of the people in your group gave the same answer',
+	'96% of the people in your group gave the same answer',
+	'35% of the people in your group gave the same answer',
+	'93% of the people in your group gave the same answer',
+];
+	
+var lowID = [
+	'42% of the people in your group gave the same answer',
+	'75% of the people in your group gave the same answer',
+	'32% of the people in your group gave the same answer',
+	'25% of the people in your group gave the same answer',
+	'16% of the people in your group gave the same answer',
+	'59% of the people in your group gave the same answer',
+	'12% of the people in your group gave the same answer',
+	'23% of the people in your group gave the same answer',
+	'64% of the people in your group gave the same answer',
+	'14% of the people in your group gave the same answer',
+];
+	
+var Feedback;
+
+
+
+var state="question";
+
+
+function personalityAnswer() {
+	$('#TFresp').click(function(){
+		if(state=="question") {
+			$('#samediff').css('display','block');
+			$('#majgroup').css('display','block');
+			state="feedback";
+			personalityQ();
+		} else if(state=="feedback") {
+			$('#samediff').css('display','none');
+			$('#majgroup').css('display','none');
+			PQ.shift();
+			Feedback.shift();
+			state="question";
+			personalityQ();
+		}
+	});
+}
+
+function personalityQ() {
+	$('#question').html(PQ[0]);
+	$('#samediff').html(Feedback[0]);
+	$('input[name="answer"]').prop('checked', false);
+	
+	alert(state);
+	if(PQ.length!=0) {
+		personalityAnswer();
+	} else {
+		$('#personality').css('display','none');
+		$('#summary').css('display','block');	
+	}	
+};
+
+	
+//Personality Instructions
+$('#beginPers').click(function(){
+	$('#persInstructions').css('display', 'none');
+	$('#personality').css('display', 'block');
+	$('#samediff').css('display','none');
+	$('#majgroup').css('display','none');
+	if(cond=='IGhighID' || cond=='OGhighID') 
+	{
+		Feedback=highID;
+		$('#similarity').html('Your personality is similar to 80% of the people in your group');
+	} else if(cond=='IGlowID' || cond=='IGhighID')
+	{
+		Feedback=lowID;
+		$('#similarity').html('Your personality is similar to 20% of the people in your group');
+	}
+	personalityQ();
+});
+
+
+
+//IDENTIFICATION
+
+$('#identification').submit(function(){
+	$('#summary').css('display', 'none');
+	$('#end').css('display', 'block');
+	return;
+});	
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1011 @@
+<!-- Sets up templates for the actual "slides" and forms that are 
+supposed to be shown at each stage of the experiment. -->
+
+<html>
+<head>
+  <title>Start page</title>
+<script src="https://www.stanford.edu/~dco/common/jquery.min.js"></script>
+<script src="https://www.stanford.edu/~dco/common/mmturkey.0.5.js?nowarn"></script>
+<link rel="stylesheet" href="css/IGstudy.css" />
+
+<style type="text/css">
+.slide, #instructions, #wheel {
+    min-width: 800px;
+}
+#wheel {
+    margin-left: auto ;
+    margin-right: auto ;
+}
+</style>
+</head>
+
+<body>
+<div class="slide" id="instructions">
+    <p id='logo-text'>Welcome to the Study</p>
+  <p class="block-text">
+  In this experiment, we are interested in how
+  perceptual differences are related to personality differences.
+  </p>
+  <button type="button" onclick="this.blur(); experiment.description()">Start</button>
+    <p class="block-text" id="legal">On the next page you will see a spinning dancer. Which way is she spinning? As soon as you click the Start button, look at the dancer and give your immediate, intuitive answer about whether you think she is spinning clockwise or counterclockwise.</p> 
+	<p class="block-text" id="legal">(She might appear to you to be spinning both ways, so just give your immediate reaction about which direction you saw her spin first)</p>
+</div>
+<script LANGUAGE="JavaScript">
+<!--
+function ValidateForm(form){
+    var valid = 0;
+    for(var i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].checked == true ) { 
+            valid = 1; 
+            return true;
+        } 
+    } 
+    if (valid == 0) {
+        alert ( "Please answer this question." );
+        return false; 
+    }
+}
+function ValidateSelect(form) {
+    if (form.ageRange.selectedIndex != 0 && form.ageRange.selectedIndex != 1 && form.ageRange.selectedIndex != 2 && form.ageRange.selectedIndex != 3 && form.ageRange.selectedIndex != 4 && form.ageRange.selectedIndex != 5 && form.ageRange.selectedIndex != 6) {
+        alert ( "Please answer this question." );
+        return false;
+    }
+    return true; 
+}
+function ValidateNumber(field)
+{
+    valid = true;
+    if (field.value == "")
+    {
+        alert ("Please answer all the questions.");
+        valid = false;
+    }
+    if (field.value < 0 || field.value > 10) {
+    	alert ("Please answer between 0 and 10.");
+    	valid = false;
+    }
+    if (isNaN(field.value)) {
+        alert ("Please answer using only numbers.");
+        valid = false;
+    }
+    return valid;
+}
+function checkPreview() {
+    if (turk.previewMode) {
+        alert ("Please accept this HIT to see more questions.");
+        return false;
+    }
+    return true;
+}
+function ValidateText(field)
+{
+    valid = true;
+    if (field.value == "" )
+    {
+        alert ("Please answer all the questions.");
+        valid = false;
+    }
+    return valid;
+}
+/*
+function pressEnter(e) {
+    if (e.keyCode == 13) {
+    	document.rating.next.click();
+    	return false;
+    }
+}
+*/
+function ValidateRadioButtons() {
+    
+    if ($('input[name="happy"]:checked').val()!=null &&
+        $('input[name="sad"]:checked').val()!=null &&
+        $('input[name="anger"]:checked').val()!=null &&
+        $('input[name="surprise"]:checked').val()!=null &&
+        $('input[name="disgust"]:checked').val()!=null &&
+        $('input[name="fear"]:checked').val()!=null &&
+        $('input[name="content"]:checked').val()!=null &&
+        $('input[name="disapp"]:checked').val()!=null // &&
+        // $('#attentionCheck1').val()!=null
+        ) {
+        return true;
+    } else {
+        alert ( "Please answer all the questions." );
+        return false;    
+    }
+}
+function ValidateDemographicForm() {
+        if ($('input[name="genderButton"]:checked').val()!=null &&
+            $('#ageRange').val()!=null &&
+            $('input[name="nativeLanguage"]').val()!=null) {
+        return true;
+    } else {
+        alert ( "Please answer all the questions." );
+        return false;    
+    }
+}
+function ValidateAnchor() {
+    if ($('#anchorResponse').val()!="") {
+        return true;
+    } else {
+        alert ( "Please answer the question to continue." );
+        return false;    
+    }
+}
+function ValidateSocCompRadioButtons() {
+    if ($('input[name="socComp1"]:checked').val()!=null &&
+        $('input[name="socComp2"]:checked').val()!=null &&
+        $('input[name="socComp3"]:checked').val()!=null &&
+        $('input[name="socComp4"]:checked').val()!=null &&
+        $('input[name="socComp5"]:checked').val()!=null &&
+        $('input[name="socComp6"]:checked').val()!=null &&
+        $('input[name="socComp7"]:checked').val()!=null &&
+        $('input[name="socComp8"]:checked').val()!=null &&
+        $('input[name="socComp9"]:checked').val()!=null &&
+        $('input[name="socComp10"]:checked').val()!=null
+        ) {
+        return true;
+    } else {
+        alert ( "Please answer all the questions." );
+        return false;    
+    }
+}
+function ValidateQuestionnairesSlide() {
+    if ($('input[name="RSE1"]:checked').val()!=null &&
+        $('input[name="RSE2"]:checked').val()!=null &&
+        $('input[name="RSE3"]:checked').val()!=null &&
+        $('input[name="RSE4"]:checked').val()!=null &&
+        $('input[name="RSE5"]:checked').val()!=null &&
+        $('input[name="RSE6"]:checked').val()!=null &&
+        $('input[name="RSE7"]:checked').val()!=null &&
+        $('input[name="RSE8"]:checked').val()!=null &&
+        $('input[name="RSE9"]:checked').val()!=null &&
+        $('input[name="RSE10"]:checked').val()!=null &&
+        $('input[name="LOTR1"]:checked').val()!=null &&
+        $('input[name="LOTR2"]:checked').val()!=null &&
+        $('input[name="LOTR3"]:checked').val()!=null &&
+        $('input[name="LOTR4"]:checked').val()!=null &&
+        $('input[name="LOTR5"]:checked').val()!=null &&
+        $('input[name="LOTR6"]:checked').val()!=null &&
+        $('input[name="LOTR7"]:checked').val()!=null &&
+        $('input[name="LOTR8"]:checked').val()!=null &&
+        $('input[name="LOTR9"]:checked').val()!=null &&
+        $('input[name="LOTR10"]:checked').val()!=null &&
+        $('input[name="SINS1"]:checked').val()!=null &&
+        $('input[name="PHQ1"]:checked').val()!=null &&
+        $('input[name="PHQ2"]:checked').val()!=null
+        ){
+        return true;
+    } else {
+        alert ( "Please answer all the questions." );
+        return false;    
+    }
+}
+</script>
+
+
+<div class="slide" id="description">
+    <div id="thirdPersonInstructions1">
+<p id='logo-text'>Which way is she spinning?</p>
+<img src="img/dancer.gif" height="300" width="225" />
+</div>
+<div id="firstPersonInstructions1">
+<p id='logo-text'>Which way is she spinning?</p>
+<img src="img/dancer.gif" height="300" width="225" />
+</div>
+<br>
+<div id="form">
+<form>
+	<input class="group" type="radio" name="group" value="clock" style="text-style:underline">Clockwise
+	<br />
+	<br />
+	<input class="group" type="radio" name="group" value="countclock">Counter-Clockwise
+</form>
+<button type="button" onclick="this.blur(); experiment.next()">Let's Start!</button>
+</div>
+</div>
+
+
+<div class="slide" id="stage">
+    <div id="firstPersonInstructions">
+        <div id="freshGame">
+            <p id="question">Please imagine that you are in a new game, and do not consider any previous wheels you may have seen or the outcomes you may have hypothethically won.</p>
+        </div>
+        <p id="question">
+        You are going to spin this wheel. Imagine that you will win the amount of money shown in the section the wheel lands on (indicated by the black pointer). Please study the wheel closely: make sure you know how much you would win for each section, and how large each section is.
+        <br>
+        </p>
+        
+        
+        <center>
+            <p id="question"><b>Click on the green button when you are ready.</b></p>
+        </center>
+        </div>
+    <div id="thirdPersonInstructions">
+        <p id="question"><b><span id="CharName1"> </span></b> is going to spin this wheel.
+        <br>He will win the amount of money shown in the section the wheel lands on (indicated by the black pointer). Please study the wheel closely: make sure you know how much he would win for each section, and how large each section is.
+        <br>
+        </p>
+        
+        
+        <center>
+            <p id="question"><b>Click on the green button when you are ready to see <span id="CharName2"> </span> spin his wheels.</b></p>
+        </center>
+        </div>
+    <!--
+    </div> 
+    -->
+    <center>
+    <div id="wheel" width="800" height="300"> </div>
+    </center>
+    <div id="response">
+        <center>
+        
+        <div id="firstPersonResponse">
+        <p id="question">
+            <h3>You have won <b>$<span id="Outcome2"> </span></b>!<br> How do you feel? Please rate how strongly you feel for each of the following emotions:</h3>
+        </p>
+        </div>
+
+        <div id="thirdPersonResponse">
+        <p id="question">
+            <h3><span id="CharName3"> </span> has won <b>$<span id="Outcome"> </span></b>!<br> How do you think he feels? Please guess how strongly he feels for each of the following emotions:</h3>
+        </p>
+        </div>
+
+        <!--         <p id="question">
+            First, how much did <span id="CharName4">{{}}</span> win on the <strong style="font-size: 125%;"><span id="whichWheelFirst_span1"></span></strong> wheel? (Write the dollar amount without the dollar sign.)
+        </p>
+            <center>
+            <input type="text" id="attentionCheck1" /><br />
+            </center>
+            <br><br> -->
+
+        <form name="happyform">
+        &nbsp; Happiness: &nbsp; &nbsp; 
+            <span id="happinessResponse">
+                Not at all
+                    <input type="radio" name="happy" value="1" />  
+                    <input type="radio" name="happy" value="2" />  
+                    <input type="radio" name="happy" value="3" />  
+                    <input type="radio" name="happy" value="4" />  
+                    <input type="radio" name="happy" value="5" />  
+                    <input type="radio" name="happy" value="6" />  
+                    <input type="radio" name="happy" value="7" />  
+                    <input type="radio" name="happy" value="8" />  
+                    <input type="radio" name="happy" value="9" />  
+                Extremely
+            </span>
+        </form>
+               
+        <form name="sadform">
+        &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
+            <span id="sadnessResponse">
+                Not at all
+                    <input type="radio" name="sad" value="1" />  
+                    <input type="radio" name="sad" value="2" />  
+                    <input type="radio" name="sad" value="3" />  
+                    <input type="radio" name="sad" value="4" />  
+                    <input type="radio" name="sad" value="5" />  
+                    <input type="radio" name="sad" value="6" />  
+                    <input type="radio" name="sad" value="7" />  
+                    <input type="radio" name="sad" value="8" />  
+                    <input type="radio" name="sad" value="9" />  
+                Extremely
+            </span>
+        </form>
+        
+        
+
+        <form name="angerform">
+        &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
+            <span id="angerResponse">
+                Not at all
+                    <input type="radio" name="anger" value="1" />  
+                    <input type="radio" name="anger" value="2" />  
+                    <input type="radio" name="anger" value="3" />  
+                    <input type="radio" name="anger" value="4" />  
+                    <input type="radio" name="anger" value="5" />  
+                    <input type="radio" name="anger" value="6" />  
+                    <input type="radio" name="anger" value="7" />
+                    <input type="radio" name="anger" value="8" />  
+                    <input type="radio" name="anger" value="9" />    
+                Extremely
+            </span>
+        </form>
+        
+        <form name="surpriseform">
+        &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
+            <span id="surpriseResponse">
+                Not at all
+                    <input type="radio" name="surprise" value="1" />  
+                    <input type="radio" name="surprise" value="2" />  
+                    <input type="radio" name="surprise" value="3" />  
+                    <input type="radio" name="surprise" value="4" />  
+                    <input type="radio" name="surprise" value="5" />  
+                    <input type="radio" name="surprise" value="6" />  
+                    <input type="radio" name="surprise" value="7" />
+                    <input type="radio" name="surprise" value="8" />  
+                    <input type="radio" name="surprise" value="9" />    
+                Extremely
+            </span>
+        </form>
+        <br>
+        <form name="disgustform">
+        &nbsp; &nbsp; Disgust: &nbsp; &nbsp; &nbsp; &nbsp; 
+            <span id="disgustResponse">
+                Not at all
+                    <input type="radio" name="disgust" value="1" />  
+                    <input type="radio" name="disgust" value="2" />  
+                    <input type="radio" name="disgust" value="3" />  
+                    <input type="radio" name="disgust" value="4" />  
+                    <input type="radio" name="disgust" value="5" />  
+                    <input type="radio" name="disgust" value="6" />  
+                    <input type="radio" name="disgust" value="7" />
+                    <input type="radio" name="disgust" value="8" />  
+                    <input type="radio" name="disgust" value="9" />    
+                Extremely
+            </span>
+        </form>
+
+        <form name="fearform">
+        &nbsp; &nbsp; &nbsp; &nbsp; Fear: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <span id="fearResponse">
+                Not at all
+                    <input type="radio" name="fear" value="1" />  
+                    <input type="radio" name="fear" value="2" />  
+                    <input type="radio" name="fear" value="3" />  
+                    <input type="radio" name="fear" value="4" />  
+                    <input type="radio" name="fear" value="5" />  
+                    <input type="radio" name="fear" value="6" />  
+                    <input type="radio" name="fear" value="7" />
+                    <input type="radio" name="fear" value="8" />  
+                    <input type="radio" name="fear" value="9" />    
+                Extremely
+            </span>
+        </form>
+        
+
+
+        <form name="contentform">
+        Contentment: &nbsp;
+            <span id="contentmentResponse">
+                Not at all
+                    <input type="radio" name="content" value="1" />  
+                    <input type="radio" name="content" value="2" />  
+                    <input type="radio" name="content" value="3" />  
+                    <input type="radio" name="content" value="4" />  
+                    <input type="radio" name="content" value="5" />  
+                    <input type="radio" name="content" value="6" />  
+                    <input type="radio" name="content" value="7" />
+                    <input type="radio" name="content" value="8" />  
+                    <input type="radio" name="content" value="9" />    
+                Extremely
+            </span>
+        </form>
+        
+        <form name="disappform">
+        Disappointment:
+            <span id="disappointmentResponse">
+                Not at all
+                    <input type="radio" name="disapp" value="1" />  
+                    <input type="radio" name="disapp" value="2" />  
+                    <input type="radio" name="disapp" value="3" />  
+                    <input type="radio" name="disapp" value="4" />  
+                    <input type="radio" name="disapp" value="5" />  
+                    <input type="radio" name="disapp" value="6" />  
+                    <input type="radio" name="disapp" value="7" /> 
+                    <input type="radio" name="disapp" value="8" />  
+                    <input type="radio" name="disapp" value="9" />   
+                Extremely &nbsp; &nbsp;
+            </span>
+        </form>
+
+
+        <br>
+
+        <button type="button" id="next" onclick="this.blur(); if (ValidateRadioButtons()) { experiment.next(); }">Next</button>
+        </center>
+    </div>
+</div>
+
+<div class="slide" id="socialComparison">
+    <p class="block-text"> This is the third last page of this HIT.
+        <br><br>
+        Answer each item as honestly as you can by choosing the appropriate response on the scale. There is no "right" or "wrong" answer. Thank you.</p>
+        <br><br>
+    <center>
+
+        Compared to the average person, ...
+        <br><br>
+        how <b>compassionate</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp1" value="1" />  
+                    <input type="radio" name="socComp1" value="2" />  
+                    <input type="radio" name="socComp1" value="3" />  
+                    <input type="radio" name="socComp1" value="4" />  
+                    <input type="radio" name="socComp1" value="5" />  
+                    <input type="radio" name="socComp1" value="6" />  
+                    <input type="radio" name="socComp1" value="7" />  
+                    <input type="radio" name="socComp1" value="8" />  
+                    <input type="radio" name="socComp1" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>narrow-minded</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp2" value="1" />  
+                    <input type="radio" name="socComp2" value="2" />  
+                    <input type="radio" name="socComp2" value="3" />  
+                    <input type="radio" name="socComp2" value="4" />  
+                    <input type="radio" name="socComp2" value="5" />  
+                    <input type="radio" name="socComp2" value="6" />  
+                    <input type="radio" name="socComp2" value="7" />  
+                    <input type="radio" name="socComp2" value="8" />  
+                    <input type="radio" name="socComp2" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>disagreeable</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp3" value="1" />  
+                    <input type="radio" name="socComp3" value="2" />  
+                    <input type="radio" name="socComp3" value="3" />  
+                    <input type="radio" name="socComp3" value="4" />  
+                    <input type="radio" name="socComp3" value="5" />  
+                    <input type="radio" name="socComp3" value="6" />  
+                    <input type="radio" name="socComp3" value="7" />  
+                    <input type="radio" name="socComp3" value="8" />  
+                    <input type="radio" name="socComp3" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>clever</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp4" value="1" />  
+                    <input type="radio" name="socComp4" value="2" />  
+                    <input type="radio" name="socComp4" value="3" />  
+                    <input type="radio" name="socComp4" value="4" />  
+                    <input type="radio" name="socComp4" value="5" />  
+                    <input type="radio" name="socComp4" value="6" />  
+                    <input type="radio" name="socComp4" value="7" />  
+                    <input type="radio" name="socComp4" value="8" />  
+                    <input type="radio" name="socComp4" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>optimistic</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp5" value="1" />  
+                    <input type="radio" name="socComp5" value="2" />  
+                    <input type="radio" name="socComp5" value="3" />  
+                    <input type="radio" name="socComp5" value="4" />  
+                    <input type="radio" name="socComp5" value="5" />  
+                    <input type="radio" name="socComp5" value="6" />  
+                    <input type="radio" name="socComp5" value="7" />  
+                    <input type="radio" name="socComp5" value="8" />  
+                    <input type="radio" name="socComp5" value="9" />  
+                Very much more
+        <br><br>
+        <hr>
+        <br><br>
+        Compared to the average person, ...
+        <br><br>
+        how <b>greedy</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp6" value="1" />  
+                    <input type="radio" name="socComp6" value="2" />  
+                    <input type="radio" name="socComp6" value="3" />  
+                    <input type="radio" name="socComp6" value="4" />  
+                    <input type="radio" name="socComp6" value="5" />  
+                    <input type="radio" name="socComp6" value="6" />  
+                    <input type="radio" name="socComp6" value="7" />  
+                    <input type="radio" name="socComp6" value="8" />  
+                    <input type="radio" name="socComp6" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>petty</b> are you? (not pretty, but petty)
+        <br>
+                Very much less
+                    <input type="radio" name="socComp7" value="1" />  
+                    <input type="radio" name="socComp7" value="2" />  
+                    <input type="radio" name="socComp7" value="3" />  
+                    <input type="radio" name="socComp7" value="4" />  
+                    <input type="radio" name="socComp7" value="5" />  
+                    <input type="radio" name="socComp7" value="6" />  
+                    <input type="radio" name="socComp7" value="7" />  
+                    <input type="radio" name="socComp7" value="8" />  
+                    <input type="radio" name="socComp7" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>capable</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp8" value="1" />  
+                    <input type="radio" name="socComp8" value="2" />  
+                    <input type="radio" name="socComp8" value="3" />  
+                    <input type="radio" name="socComp8" value="4" />  
+                    <input type="radio" name="socComp8" value="5" />  
+                    <input type="radio" name="socComp8" value="6" />  
+                    <input type="radio" name="socComp8" value="7" />  
+                    <input type="radio" name="socComp8" value="8" />  
+                    <input type="radio" name="socComp8" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>unreliable</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp9" value="1" />  
+                    <input type="radio" name="socComp9" value="2" />  
+                    <input type="radio" name="socComp9" value="3" />  
+                    <input type="radio" name="socComp9" value="4" />  
+                    <input type="radio" name="socComp9" value="5" />  
+                    <input type="radio" name="socComp9" value="6" />  
+                    <input type="radio" name="socComp9" value="7" />  
+                    <input type="radio" name="socComp9" value="8" />  
+                    <input type="radio" name="socComp9" value="9" />  
+                Very much more
+        <br>
+        <br>
+        <br>
+        how <b>honest</b> are you?
+        <br>
+                Very much less
+                    <input type="radio" name="socComp10" value="1" />  
+                    <input type="radio" name="socComp10" value="2" />  
+                    <input type="radio" name="socComp10" value="3" />  
+                    <input type="radio" name="socComp10" value="4" />  
+                    <input type="radio" name="socComp10" value="5" />  
+                    <input type="radio" name="socComp10" value="6" />  
+                    <input type="radio" name="socComp10" value="7" />  
+                    <input type="radio" name="socComp10" value="8" />  
+                    <input type="radio" name="socComp10" value="9" />  
+                Very much more
+        <br>
+        <br>
+            
+
+        <button type="button" id="afterSocComp" onclick="this.blur(); if (ValidateSocCompRadioButtons()) { experiment.afterSocComp(); }">Next</button>
+        </center>
+</div>
+
+
+<div class="slide" id="questionnairesSlide">
+     <p class="block-text"> This is the second last page of this HIT. We would like you to fill in several short questionnaires. For each item, indicate how well it describes you by choosing the appropriate response on the scale. There is no "right" or "wrong" answer. Please answer as honestly as you can. Thank you.</p>
+
+     <p class="block-text">Note: sometimes due to differing screen sizes or the font sizes, the labels on the scales may end up in a confusing place. If that happens, try to zoom in or zoom out (increase or decrease the font size).</p>
+
+<br><br>
+
+  <p class="block-text">Please indicate how well you agree with the following statements. "Strongly Disagree" on the <b>left</b> to "Strongly Agree" on the <b>right</b>.</p>
+
+
+    <div id="questionnaireResponse">
+        <center>
+        <table width=75%>
+            <tr><td>
+            </td><td width=250>
+            Strongly  &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;  &nbsp; Strongly  <br>
+            Disagree &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; Agree 
+            </td></tr>
+            <tr><td>
+
+                I feel that I am a person of worth, at least on an equal plane with others:
+
+            </td><td> &nbsp; &nbsp; &nbsp;
+                                <input type="radio" name="RSE1" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE1" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE1" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE1" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                
+            </td></tr>
+            <tr><td> 
+
+                I feel that I have a number of good qualities.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE2" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE2" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE2" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE2" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                
+            </td></tr>
+            <tr><td>
+
+                All in all, I am inclined to feel that I am a failure.
+
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE3" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE3" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE3" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp; 
+                                <input type="radio" name="RSE3" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                
+            </td></tr>
+            
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                I am able to do things as well as most other people.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE4" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE4" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE4" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE4" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                
+            </td></tr>
+            
+            
+            
+            <tr><td>
+
+                I feel I do not have much to be proud of.
+
+            </td><td> &nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE5" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE5" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE5" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE5" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;   
+                                
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                I take a positive attitude towards myself.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE6" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE6" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE6" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE6" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;  
+                                
+            </td></tr>
+            <tr><td>
+
+                On the whole, I am satisfied with myself.
+
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE7" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE7" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE7" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE7" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                I wish I could have more respect for myself.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE8" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE8" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE8" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE8" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+            </td></tr>
+
+            <tr><td> 
+
+                I certainly feel useless at times.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE9" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE9" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE9" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE9" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+            </td></tr>
+
+            <tr><td> 
+
+                At times I think I am no good at all.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="RSE10" value="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE10" value="1" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE10" value="2" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="RSE10" value="3" /> &nbsp;&nbsp;&nbsp;&nbsp;
+            </td></tr>
+    </table>
+
+    <br><br>
+    <hr>
+    <br><br>
+
+    <p class="block-text">Please indicate how well you agree with the following statements. "Strongly Disagree" on the <b>left</b> to "Strongly Agree" on the <b>right</b>.</p>
+
+
+
+
+        <center>
+        <table width=70%>
+            <tr><td>
+            </td><td width=250>
+            Strongly  &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp; Neutral &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; Strongly  <br>
+            Disagree &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; Agree 
+            </td></tr>
+            <tr><td>
+
+                In uncertain times, I usually expect the best. 
+
+            </td><td> &nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR1" value="1" /> &nbsp;&nbsp;    
+                                <input type="radio" name="LOTR1" value="2" /> &nbsp;&nbsp;   
+                                <input type="radio" name="LOTR1" value="3" /> &nbsp;&nbsp;   
+                                <input type="radio" name="LOTR1" value="4" /> &nbsp;&nbsp;   
+                                <input type="radio" name="LOTR1" value="5" /> &nbsp;&nbsp;
+                                <input type="radio" name="LOTR1" value="6" /> &nbsp;&nbsp;
+                                <input type="radio" name="LOTR1" value="7" /> &nbsp;&nbsp;
+
+            </td></tr>
+            <tr><td> 
+
+                It's easy for me to relax.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR2" value="1" /> &nbsp;&nbsp;     
+                                <input type="radio" name="LOTR2" value="2" /> &nbsp;&nbsp;    
+                                <input type="radio" name="LOTR2" value="3" /> &nbsp;&nbsp;    
+                                <input type="radio" name="LOTR2" value="4" /> &nbsp;&nbsp;    
+                                <input type="radio" name="LOTR2" value="5" /> &nbsp;&nbsp;
+                                <input type="radio" name="LOTR2" value="6" /> &nbsp;&nbsp;    
+                                <input type="radio" name="LOTR2" value="7" /> &nbsp;&nbsp;
+            </td></tr>
+            <tr><td>
+
+                If something can go wrong for me, it will. 
+
+            </td><td>&nbsp; &nbsp; &nbsp;  
+                                <input type="radio" name="LOTR3" value="1" /> &nbsp;&nbsp;  
+                                <input type="radio" name="LOTR3" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR3" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR3" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR3" value="5" /> &nbsp;&nbsp;
+                                <input type="radio" name="LOTR3" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR3" value="7" /> &nbsp;&nbsp;
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                I'm always optimistic about my future. 
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR4" value="1" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR4" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR4" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR4" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR4" value="5" /> &nbsp;&nbsp;
+                                <input type="radio" name="LOTR4" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR4" value="7" /> &nbsp;&nbsp;
+            </td></tr>
+            
+            
+            
+            <tr><td>
+
+                I enjoy my friends a lot.
+
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR5" value="1" /> &nbsp;&nbsp;  
+                                <input type="radio" name="LOTR5" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR5" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR5" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR5" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR5" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR5" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                It's important for me to keep busy.
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR6" value="1" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR6" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+            <tr><td> 
+
+                I hardly ever expect things to go my way. 
+            
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR7" value="1" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR7" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                I don't get upset too easily.
+            
+            </td><td>&nbsp; &nbsp; &nbsp;
+                                <input type="radio" name="LOTR8" value="1" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR8" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+
+            <tr><td>
+
+                I rarely count on good things happening to me. 
+
+            </td><td>&nbsp; &nbsp; &nbsp;
+                                <input type="radio" name="LOTR9" value="1" /> &nbsp;&nbsp;  
+                                <input type="radio" name="LOTR9" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR9" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR9" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR9" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR9" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR9" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+            
+
+            <tr><td>
+
+                Overall, I expect more good things to happen to me than bad.
+
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="LOTR10" value="1" /> &nbsp;&nbsp;  
+                                <input type="radio" name="LOTR10" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR10" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR10" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR10" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR10" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="LOTR10" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td>
+
+                I am a narcissist.
+                <br> (The word "Narcissist" means: <br>
+                egotistical, self-focused, and vain.)
+
+            </td><td>&nbsp; &nbsp; &nbsp; 
+                                <input type="radio" name="SINS1" value="1" /> &nbsp;&nbsp;  
+                                <input type="radio" name="SINS1" value="2" /> &nbsp;&nbsp; 
+                                <input type="radio" name="SINS1" value="3" /> &nbsp;&nbsp; 
+                                <input type="radio" name="SINS1" value="4" /> &nbsp;&nbsp; 
+                                <input type="radio" name="SINS1" value="5" /> &nbsp;&nbsp; 
+                                <input type="radio" name="SINS1" value="6" /> &nbsp;&nbsp; 
+                                <input type="radio" name="SINS1" value="7" /> &nbsp;&nbsp; 
+            </td></tr>
+    </table>
+
+    <br><br>
+    <hr>
+    <br><br>
+
+        <p class="block-text">Over the past 2 weeks, how often have you been bothered by any of the following problems? </p>
+
+        <center>
+        <table width=80%>
+            <tr><td>
+            </td><td width=600>
+            </td></tr>
+            <tr><td>
+
+                Little interest or pleasure in doing things
+
+            </td><td>
+            <p style="font-size:13">
+                                <input type="radio" name="PHQ1" value="0" /> Not at all &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ1" value="1" /> Several days &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ1" value="2" /> More than half the days &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ1" value="3" /> Nearly every day &nbsp;&nbsp; 
+            </p>
+            </td></tr>
+
+            <tr height=20></tr>
+
+            <tr><td> 
+
+                Feeling down, depressed or hopeless
+            
+            </td><td>
+            <p style="font-size:13">
+                                <input type="radio" name="PHQ2" value="0" /> Not at all &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ2" value="1" /> Several days &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ2" value="2" /> More than half the days &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="PHQ2" value="3" /> Nearly every day &nbsp;&nbsp; 
+            </p>
+            </td></tr>
+
+    </table>
+    <br>
+        <button type="button" id="next" onclick="this.blur(); if (ValidateQuestionnairesSlide()) {experiment.recordQuestionnaires();}">Next</button>
+    
+        </center>
+    </div>
+</div>
+
+
+
+<div class="slide" id="askInfo">
+    
+    <div id="form">
+        <p id="block-text"> Thank you for doing this HIT! </p>
+        <br>
+        <br>
+
+
+    <p id="infoQ">Please answer a few questions about yourself. </p>
+
+
+    <form name="gender">
+    <span id="infoQ">What is your gender?</span>&nbsp;&nbsp;
+    <input type="radio" name="genderButton" value="M" /><span id="opt">Male</span>&nbsp;&nbsp;
+    <input type="radio" name="genderButton" value="F" /><span id="opt">Female</span>
+    </form>
+    
+    <form name="age">
+    <span id="infoQ">What is your age?</span>&nbsp;&nbsp;
+    <input type="text" id="ageRange" /><br />
+
+
+    
+    <form name="language">
+    <span id="infoQ">What is your native language?</span>&nbsp;&nbsp;
+    <input type="text" name="nativeLanguage" /><br />
+    </form>
+    
+    
+    <form name="comments">
+    </br>
+    </br>
+    
+    <span id="infoQ"> (Optional) Please leave any comments or suggestions regarding this HIT:</span></br>
+    <TEXTAREA name="commentsTextArea" ROWS=10 COLS=50></TEXTAREA>
+    </br>
+    </form>
+    <button type="button" onclick="this.blur(); if (ValidateDemographicForm()) {experiment.end();}">Submit</button>
+
+    </div>
+</div>
+
+<div class="slide" id="finished">
+  You're finished - thanks for participating! Submitting to Mechanical Turk...
+</div>
+
+<script src="https://www.stanford.edu/~dco/common/raphael.js"></script>
+<script src="js/IGstudy.js"></script>
+</body>
+</html>
