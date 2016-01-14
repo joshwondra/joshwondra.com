@@ -14,15 +14,15 @@
 <!--	
 	<form action="SubjectInfo.php" method="post" novalidate> 
 	-->
+	<div id="test"></div>
+	
 	<form method="post" id="SubjectInfo" novalidate>
 	Subject ID: <input required type="text" autocomplete="off" name="SubjectID"><br>
 	Condition: 
 		<select name = "condition" required>
 			<option value="default" selected>(select one)</option>
-			<option value="IGhighID">Ingroup, high identification</option>
-			<option value="IGlowID">Ingroup, low identification</option>
-			<option value="OGhighID">Outgroup, high identification</option>
-			<option value="OGlowID">Outgroup, low identification</option>
+			<option value="IGhighID">High identification</option>
+			<option value="IGlowID">Low identification</option>
 		</select></br>
 	Experimenter Name: <input required type="text" autocomplete="off" name="experimenter"><br>
 	<input type="submit" value="Submit">
@@ -51,6 +51,8 @@
 		<input type="radio" name="group" value="clock">Clockwise
 		<br />
 		<input type="radio" name="group" value="countclock">Counterclockwise
+		<br />
+		<input type="submit" value="Submit">
 	</form>
 	</div>
 </div>
@@ -67,30 +69,13 @@
 
 <div class="slide" id="personality">
 	<h1>Please answer the following 10 personality questions</h1>
-	<p id="samediff"></p>
-	<p id="majgroup">What did the majority of people in your group answer?</p>
+	<p class="majgroup">Here's how other people in your group responded</p>
+	<div id="samediff"></div>
+	<p class="majgroup">What did the majority of people in your group answer?</p>
 	<p id="question"></p>
-	<form id="TFresp" method="post" novalidate>True <input type="radio" name="answer" value="T"> <input type="radio" name="answer" value="F"> False</form>
-</div>
-
-<div class="slide" id="summary">
-	<div id="testval"></div>
-	<div id="test"></div>
-	<h1>How do you feel about being a <span class='groupident'>GROUP</span>?</h1>
-	<h2>Please answer the following questions</h2>
-	<form id="identification" method="post" novalidate>
+	<form id="TFresp" method="post" novalidate>
+		True <input type="radio" name="answer" value="T"> <input type="radio" name="answer" value="F"> False
 		<br />
-		<p class="question">I am proud to be a <span class='groupident'>GROUP</span> </p>
-		<p><span class="slidervalue" id="val1">50</span></p>
-		<p><span class='SD'>Strongly disagree</span><input class="slider" id="id1" name="id1" type="range" min="0" max="100" value="50" /><span class='SA'>Strongly agree</span></p>
-		<br />
-		<p class="question">Being a <span class='groupident'>GROUP</span> is an important part of my identity</p>
-		<p><span class="slidervalue" id="val2">50</span></p>
-		<p><span class='SD'>Strongly disagree</span><input class="slider" id="id2" name="id2" type="range" min="0" max="100" value="50" /><span class='SA'>Strongly agree</span></p>
-		<br />
-		<p class="question">I feel close to other <span class='groupident'>GROUP</span>s </p>
-		<p><span class="slidervalue" id="val3">50</span></p>
-		<p><span class='SD'>Strongly disagree</span><input class="slider" id="id3" name="id3" type="range" min="0" max="100" value="50" /><span class='SA'>Strongly agree</span></p>
 		<input type="submit" value="Submit">
 	</form>
 </div>
@@ -110,19 +95,9 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<script>
-$('#id1').on('input', function(){
-	$("#val1").html($(this).val());
-}); 
+<!-- For pie charts -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-$('#id2').on('input', function(){
-	$("#val2").html($(this).val());
-}); 
-
-$('#id3').on('input', function(){
-	$("#val3").html($(this).val());
-}); 
-</script>
 
 <script>
 
@@ -156,12 +131,14 @@ $('#SubjectInfo').submit(function() {
 
 //DANCER
 
-$('#groupInfo').click(function() {
-	$('#groupInfo').submit(function(){
-		//$.post("http://localhost/test.php", {GroupSel:groupChosen});
-	});
+$('#groupInfo').submit(function() {
+	//$.post("http://localhost/test.php", {GroupSel:groupChosen});
 	/*var groupChosen=$('input[name="group"]:checked').val();*/
 	groupChosen=$('input[name="group"]:checked').val();
+	if(groupChosen!="clock" & groupChosen!="countclock")
+		{
+
+		};
 	$('#dancer').css('display', 'none');
 	$('#persInstructions').css('display', 'block');
 	if(groupChosen=="clock")
@@ -176,95 +153,118 @@ $('#groupInfo').click(function() {
 			$('#groupReminder').html('Counterclockwise Group');
 			$('.groupident').html('Counterclockwise Perceiver')
 		}  
+	else {
+		alert("Please select a direction");
+		return false;
+	}
+	return false;
 });	
 
 //Personality Questionnaire
 var PQ = [
-	'Q1: I see myself as someone who is reserved',
-	'Q2: I see myself as someone who is generally trusting',
-	'Q3: I see myself as someone who tends to be lazy',
-	'Q4: I see myself as someone who is relaxed and handles stress well',
-	'Q5: I see myself as someone who has few artistic interests',
-	'Q6: I see myself as someone who is outgoing and sociable',
-	'Q7: I see myself as someone who tends to find fault with others',
-	'Q8: I see myself as someone who does a thorough job',
-	'Q9: I see myself as someone who gets nervous easily',
+	'Q1: I see myself as someone who usually expresses their opinions',
+	'Q2: I see myself as someone who has many artistic interests',
+	'Q3: I see myself as someone who makes long-term plans and follows through on them',
+	'Q4: I see myself as someone who warms up quickly to new people',
+	'Q5: I see myself as someone who likes large parties',
+	'Q6: I see myself as someone who trusts others',
+	'Q7: I see myself as someone who keeps a tidy workspace',
+	'Q8: I see myself as someone who takes risks',
+	'Q9: I see myself as someone who likes to do one thing at a time',
 	'Q10: I see myself as someone who has an active imagination'
 ];
 
 
-
+243
 var highID = [
-	'63% of the people in your group gave the same answer',
-	'22% of the people in your group gave the same answer',
-	'72% of the people in your group gave the same answer',
-	'80% of the people in your group gave the same answer',
-	'94% of the people in your group gave the same answer',
-	'48% of the people in your group gave the same answer',
-	'88% of the people in your group gave the same answer',
-	'96% of the people in your group gave the same answer',
-	'85% of the people in your group gave the same answer',
-	'93% of the people in your group gave the same answer',
+	153,
+	53,
+	175,
+	194,
+	228,
+	117,
+	214,
+	233,
+	207,
+	226,
 ];
 	
 var lowID = [
-	'42% of the people in your group gave the same answer',
-	'75% of the people in your group gave the same answer',
-	'32% of the people in your group gave the same answer',
-	'25% of the people in your group gave the same answer',
-	'16% of the people in your group gave the same answer',
-	'59% of the people in your group gave the same answer',
-	'12% of the people in your group gave the same answer',
-	'23% of the people in your group gave the same answer',
-	'24% of the people in your group gave the same answer',
-	'14% of the people in your group gave the same answer',
+	90,
+	190,
+	68,
+	49,
+	15,
+	126,
+	29,
+	10,
+	36,
+	17,
 ];
 	
-var Feedback;
-
-
+var Feedback=40;
 
 var state="question";
 
 
-
-$('#TFresp').click(function(){
+$('#TFresp').submit(function(){
 	if(state=="question") {
 		$('#samediff').css('display','block');
-		$('#majgroup').css('display','block');
+		$('.majgroup').css('display','block');
 		state="feedback";
 		personalityQ();
 	} else if(state=="feedback") {
 		$('#samediff').css('display','none');
-		$('#majgroup').css('display','none');
+		$('.majgroup').css('display','none');
 		PQ.shift();
 		Feedback.shift();
 		state="question";
 		personalityQ();
 	}
+	return false;
 });
 
 
 
 function personalityQ() {
+	drawChart();
 	$('#question').html(PQ[0]);
-	$('#samediff').html(Feedback[0]);
 	$('input[name="answer"]').prop('checked', false);
 	
 	if(PQ.length==0) {
 		$('#personality').css('display','none');
-		$('#summary').css('display','block');	
+		$('#end').css('display','block');	
 	}	
 };
 
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+function drawChart() {
 	
+  var data = google.visualization.arrayToDataTable([
+    ['Response', 'Percent'],
+    ['Same as you', Feedback[0]],
+    ['Different from you', 243-Feedback[0]],
+  ]);
+
+  var options = {
+	  legend: {position:'right',},
+	  chartArea:{width:'100%',height:'100%'},
+	  height: '150',
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('samediff'));
+
+  chart.draw(data, options);
+}
+
 //Personality Instructions
 $('#beginPers').click(function(){
 	console.log('Start Qs')
 	$('#persInstructions').css('display', 'none');
 	$('#personality').css('display', 'block');
 	$('#samediff').css('display','none');
-	$('#majgroup').css('display','none');
+	$('.majgroup').css('display','none');
 	if(cond=='IGhighID' || cond=='OGhighID') 
 	{
 		Feedback=highID;
@@ -276,6 +276,7 @@ $('#beginPers').click(function(){
 	}
 	personalityQ();
 });
+
 
 
 
@@ -324,6 +325,12 @@ var SID, cond, exp, groupChosen, proud, important, closeness;
 
 
 </script>
+
+    <script type="text/javascript">
+
+    </script>
+
+
 
 </body>
 

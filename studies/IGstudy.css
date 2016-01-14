@@ -1,0 +1,109 @@
+/**********DISPLAY NONE FOR ALL STATES**********/
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+body {
+	font-family:"Source Sans Pro";
+	max-width: 500px;
+	margin: auto;
+}
+
+.slide {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#groupReminder {
+	opacity: .5;
+}
+
+h1 {
+	text-align: center;
+	font-size: 1.5em;
+	line-height: 1.8em;
+}
+
+h2 {
+	font-size: 1.2em;
+	line-height: 1.6em;
+}
+
+p {
+	font-size: 1.2em;
+	line-height: 1.6em;
+	color: grey;
+	font-weight: 300;
+}
+
+form {
+	line-height: 1.6em;
+	font-size: 1.2em;
+}
+
+button {
+	font-size: 1.2em;
+}
+
+#StartPage {
+	display: block;
+}
+
+#instructions {
+	display:none;
+}
+
+#dancer {
+	display:none;
+}
+
+#persInstructions {
+	display:none;
+}
+
+#personality {
+	display:none;
+}
+
+#summary {
+	display:none;
+}
+
+#summary p {
+	line-height: 1em;
+}
+
+#end {
+	display:none;
+}
+
+#samediff {
+	font-weight: bold;
+}
+
+.majgroup {
+	font-style: italic;
+}
+
+#similarity p,form{
+	font-size: 1em;
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	border: 1px solid black;
+	border-radius: 10px;
+	width: 200px;
+	height: 15px;
+}
+
+.SD {
+	margin-right: 10px;
+}
+
+.SA {
+	margin-left: 10px;
+}
+
+.question {
+	color: black;
+}

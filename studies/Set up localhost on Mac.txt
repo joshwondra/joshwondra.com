@@ -1,0 +1,3 @@
+cd to the desired directory
+write php -S localhost:8000
+Open the file in a webbrowser as http://localhost:8000/IGstudy.html
