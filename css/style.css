@@ -222,3 +222,14 @@ a:hover.socmedia{
 	height: 48px;
 	width: 48px;
 } 
+
+
+/* HIDE LAB ALUMNI INFO */
+
+.alum_entry {
+	display:none;
+}
+
+h2.alum:hover {
+	opacity: 0.6;
+}
