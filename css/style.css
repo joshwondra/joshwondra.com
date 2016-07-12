@@ -230,6 +230,11 @@ a:hover.socmedia{
 	display:none;
 }
 
+/* Sloppy solution for now, should re-format headings to make this cleaner */
+h2.alum {
+	font-size:1.25em;
+}
+
 h2.alum:hover {
 	opacity: 0.6;
 }
