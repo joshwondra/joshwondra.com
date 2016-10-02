@@ -102,25 +102,32 @@ a {
 /* 8. BANNER */
 
 header {
-	margin-bottom: 50px;
-	float: left;
+/*	margin-bottom: 50px; */
+	margin-bottom: 10px;
+/*	float: left; */
 	width: 460px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 header img {
 	display: block;
 	height: 75%;
 	width: 75%;
+	margin: 0 auto;
 }
 
 /* 9. NAVIGATION */
 
 #nav {
 	/*text-transform: uppercase;*/
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 	font-family: "Source Sans Pro", helvetica, sans-serif;
 	font-size: 1em;
 	padding-top: 5px;
-	padding-right: 0px;
+	/*padding-right: 0px;*/
 }
 
 #nav li {
@@ -129,7 +136,7 @@ header img {
 }
 
 #nav li:first-child {
-	margin-left: 0px;
+	/*margin-left: 0px;*/
 }
 
 #nav a {
@@ -219,6 +226,11 @@ a:hover.socmedia{
 }
 
 #twitter img {
+	height: 48px;
+	width: 48px;
+} 
+
+#cos img {
 	height: 48px;
 	width: 48px;
 } 
