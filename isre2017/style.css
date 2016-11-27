@@ -10,6 +10,7 @@ body {
 	height: 100px;
 	background-color: white;
 	position: fixed;
+	border-bottom: 1px solid black;
 	
 	/* make consistent with skeleton */
 	width: 100%;
@@ -36,6 +37,16 @@ body {
 	float:left;
 }
 
+@media (min-width: 400px) {
+  #logo {
+    height: 85%;
+    padding: 0; }
+}
+
+@media (min-width: 550px) {
+  #logo {
+    height: 80%; }
+}
 
 /* NAVIGATION */
 #navbar {
@@ -72,11 +83,12 @@ li a:hover {
 /* HEADINGS */
 h1 {
 	font-size: 50px;
-	font-weight: bold;
+	font-weight: 800;
+	text-align: center;
 }
 
 h2 {
-	font-style:italic;
+	;
 }
 
 /* CONTENT */
@@ -85,9 +97,17 @@ h2 {
 	padding-top: 150px;
 }
 
-p {
-	font-size: 18px;
-	line-height: 1.625;
-	margin-top: 1em;
-	margin-bottom: 1.5em;
+
+a.button {
+	text-align:center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+table, table.u-full-width, form {
+	margin-bottom: 0px;
+}
+
+.buffer {
+	height: 100px;
 }
