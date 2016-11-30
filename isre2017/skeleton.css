@@ -121,7 +121,7 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%; }
 body {
-  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  font-size: 2em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
   color: #222; }
@@ -156,9 +156,12 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #1EAEDB; }
+  color: 	#ff0000;
+  text-decoration: none;
+}
 a:hover {
-  color: #0FA0CE; }
+  text-decoration: underline;
+  opacity: .5;}
 
 
 /* Buttons
@@ -173,7 +176,7 @@ input[type="button"] {
   padding: 0 30px;
   color: #555;
   text-align: center;
-  font-size: 11px;
+  font-size: 1.3rem;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
