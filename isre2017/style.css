@@ -1,0 +1,144 @@
+/* BODY */
+
+body {
+	font-family: 'Source Sans Pro', helvetica, sans-serif;
+}
+
+#content {
+	height: 100%;
+	min-height: 500px;
+	padding: 2rem 2rem 4rem 2rem;
+	background: rgba(255, 255, 255, .9);
+;
+}
+
+
+
+
+/* HEADER */
+
+header {	
+	background-color: white;
+	text-align: justify;
+	
+	/* make consistent with skeleton */
+	height: 10rem;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 2rem 10%;
+}
+
+@media (min-width: 400px) {
+  header {
+    width: 100%;
+    padding: 0; }
+}
+
+@media (min-width: 550px) {
+  header {
+    width: 100%; }
+}
+
+
+/* NAVIGATION */
+
+#logo {
+	height: 100%;
+	background-color: white;
+}
+
+nav {
+	background-color: white;
+	padding-top: 2%;
+}
+
+nav a {
+	padding: 10px;
+	font-size: 1.5rem;
+}
+
+.currpage {
+	color: #696969;
+}
+
+
+
+
+/* HEADINGS */
+h1 {
+	text-align: center;
+}
+
+
+
+/* CONTENT */
+
+#content {
+	padding-top: 1rem;
+}
+
+#stlcity {
+	width: 100%;
+	max-width: 960px;
+	min-height: 300px;
+}
+
+#welcome {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	position: relative;
+	overflow: auto;
+	width: 100%;
+}
+
+#welcome img {
+	max-height: 360px;
+}
+
+#welcomelinks img {
+	max-height: 110px;
+	position: relative;
+}
+
+#welcomelinks a {
+	position: relative;
+	font-size: 3rem;
+}
+
+#welcomelinks {
+	background: rgba(255, 255, 255, .9);
+	position: absolute;
+	right: 3rem;
+	bottom:0;
+	text-align: center;
+	height: 100%;
+	padding-top: 4rem;
+}	
+
+a.button {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+table, table.u-full-width, form {
+	margin-bottom: 0px;
+}
+
+#signature {
+	margin-left: 20px;
+}
+
+
+
+
+
+/* FOOTER */
+footer {
+	text-align: center;
+	padding: 2rem;
+	font-size: 1.2rem	;
+	height: 100px;
+	background-color: #323232;
+	color: #a0a0a0;
+}
