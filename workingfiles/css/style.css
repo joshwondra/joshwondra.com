@@ -1,0 +1,284 @@
+/* 1. ROOT */
+
+html {
+}
+
+head {	
+}
+
+body {
+	font-family: "Acre", helvetica, sans-serif;
+}
+
+.hidden {
+	display: none;
+}
+
+/* PALETTE */
+#palette {
+	font-size: 1.5rem;
+	margin: 0;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	right: 10px;
+}
+
+#palette ul {
+	list-style: none;
+}
+
+#palette li {
+		padding: 10px;
+		margin: 0;
+}
+
+#col1 {
+	background-color: #FAD089;
+}
+
+#col2 {
+	background-color: #FF9C5B;
+}
+
+#col3 {
+	background-color: #F5634A;
+}
+
+#col4 {
+	background-color: #ED303C;
+}
+
+#col5 {
+	background-color: #3B8183;
+}
+
+/* 2. HEADINGS */
+
+h1 {
+	letter-spacing: .1rem;
+	font-size: 6rem;
+	font-family: "Cubano", helvetica, sans-serif;
+}
+
+h2, h3, h4 {
+}
+
+h3 {
+	font-family: "Cubano", helvetica, sans-serif;
+}
+
+/* 3. TYPOGRAPHY */
+
+@font-face {
+	font-family: "Acre";
+	src: url("../fonts/acre-medium.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Montserrat";
+	src: url("../fonts/Montserrat-Light.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("../fonts/SourceSansPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Cubano";
+	src: url("../fonts/Cubano-Regular.otf") format("opentype");	
+}
+
+@font-face {
+	font-family: "Gibson";
+	src: url("../fonts/Gibson-Regular.ttf") format("truetype");
+}
+
+/* 4. LINKS */
+/* 5. FIGURES & IMAGES */
+/* 6. TABLES */
+/* 7. FORMS */
+/* 8. BANNER */
+
+header {
+	background-color: #3B8183;
+	/* background-color: #3D6DCC; */
+	color: white;
+	padding: 2rem 0 0 4rem;
+}
+
+header h1 {
+	color: white;
+	font-size: 4.5rem;
+}
+
+/* 9. NAVIGATION */
+
+nav {
+	font-family: "Acre", helvetica, sans-serif;
+	font-size: 2rem;
+	padding-top: 2rem;
+}
+
+nav li {
+	display: inline-block;
+}
+
+nav a {
+	color: white;
+	padding: 0 2rem;
+	opacity: .5;
+	margin: 0;
+}
+
+nav a#current-page {
+	opacity: 1.0;
+	text-decoration: underline;
+}
+
+
+/* 10. CONTENT */
+
+em {
+	font-style: italic;
+}
+
+section {
+	padding: 12rem 0;
+}
+
+.section1 {
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.disappear {
+	opacity: 0.0;
+}
+
+.section1 h1 {
+	background-color: rgba(237,48,60, 0.8);
+	font-size: 4vw;
+	margin-bottom: .5vw;
+	display: inline-block;
+	color: white;
+	padding: 1vw;
+}
+
+#hello {
+	padding: 0;
+	position: relative;
+	color: #FFA45F;	
+}
+
+.text-overlay {
+	position: absolute;
+	color: white;
+	top: 20%;
+	left: 15vw;
+}
+
+#hello img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	top: 0;
+}
+
+#portrait {
+	/*
+	width: 25%;
+	display: block;
+	margin: 0 auto;
+	background-color: black;
+	border-radius: 50%;
+	*/
+}
+
+.section2 {
+	background-color: #0D3B97;
+	color: white;
+}
+
+.section3 {
+	background-color: white;
+}
+
+.section3 h3 {
+	color: #FF9C5B;
+}
+
+.section3 a {
+	color: #0D3B97;
+	opacity: .7;
+}
+
+.section3 a:hover {
+	color: #0D3B97;
+	opacity: 1.0;
+}
+
+
+.contact {
+	font-style: normal;
+	color: #bfb300;
+}
+
+
+/* 11. FOOTER */
+
+footer {
+	text-align: center;
+	background-color: #404040;
+	color: white;
+	padding: 2rem 0;
+}
+
+#copyright {
+	font-size: 1.5rem;	
+	font-family: "Cubano", helvetica, sans-serif;
+}
+
+/* 12. CONTACT */
+
+.socmedia img {
+	height: 48px;
+	width: 48px;
+	background-color: #999999;
+	border-radius: 50%;
+	opacity: .5;
+	margin: 0 1rem;
+}
+
+.socmedia img:hover {
+	opacity: 1.0;
+}
+
+
+/* HIDE LAB ALUMNI INFO */
+
+.alum_entry {
+	display:none;
+}
+
+.alum_container {
+	margin-top: 30px;
+}
+
+/* Sloppy solution for now, should re-format headings to make this cleaner */
+.alum div:hover {
+	opacity: 0.6;
+}
+
+.alum h2{
+	color:black;
+	font-size:1.5em;
+}
+
+.alum img{
+	width:180px;
+	height:160px;
+}
