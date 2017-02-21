@@ -1,64 +1,79 @@
 /* 1. ROOT */
 
 html {
-	overflow-y: scroll;
 }
 
-head {
-	
+head {	
 }
 
 body {
-	font-size: 100%;
-	/*	background: -webkit-radial-gradient(#bbe5e2, #6cb3af); /* Safari 5.1 to 6.0 */
-	/*	background: -o-radial-gradient(#bbe5e2, #6cb3af); /* For Opera 11.6 to 12.0 */
-	/*	background: -moz-radial-gradient(#bbe5e2, #6cb3af); /* For Firefox 3.6 to 15 */
-	/*	background: radial-gradient(#bbe5e2, #6cb3af); /* Standard syntax */
-	background: white;
-	margin: 0 auto;
-	line-height: 1.4;
-	color: grey;
-	/*	color:  white; */
-}
-
-#omnibus{
-	max-width: 55%;
-	min-width: 500px;
-	margin: 20px auto;
-	position: relative;
+	font-family: "Acre", helvetica, sans-serif;
 }
 
 .hidden {
 	display: none;
 }
 
+/* PALETTE */
+#palette {
+	font-size: 1.5rem;
+	margin: 0;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	right: 10px;
+}
+
+#palette ul {
+	list-style: none;
+}
+
+#palette li {
+		padding: 10px;
+		margin: 0;
+}
+
+#col1 {
+	background-color: #FAD089;
+}
+
+#col2 {
+	background-color: #FF9C5B;
+}
+
+#col3 {
+	background-color: #F5634A;
+}
+
+#col4 {
+	background-color: #ED303C;
+}
+
+#col5 {
+	background-color: #3B8183;
+}
 
 /* 2. HEADINGS */
 
 h1 {
-	line-height: 1.25;
+	letter-spacing: .1rem;
+	font-size: 6rem;
 	font-family: "Cubano", helvetica, sans-serif;
-	color: #363636;
 }
 
 h2, h3, h4 {
-	line-height: 1.25;
-	font-family: "Source Sans Pro", Cubano, sans-serif;
-	font-weight: bold;
-	color: #363636;
 }
 
-h1 {
-	font-size: 3em;
- 	padding-bottom: 20px;
-}
-
-h2 {
-	font-size: 1.75em;
-	padding-bottom: 20px;	
+h3 {
+	font-family: "Cubano", helvetica, sans-serif;
 }
 
 /* 3. TYPOGRAPHY */
+
+@font-face {
+	font-family: "Acre";
+	src: url("../fonts/acre-medium.otf") format("opentype");
+}
 
 @font-face {
 	font-family: "Montserrat";
@@ -75,124 +90,137 @@ h2 {
 	src: url("../fonts/Cubano-Regular.otf") format("opentype");	
 }
 
-/*@font-face {
-	font-family: "League Gothic";
-	src: url("../fonts/LeagueGothic-Regular.otf") format("opentype");
-}
-
 @font-face {
-	font-family: "Colaborate-Thin";
-	src: url("../fonts/ColabThi.otf") format("opentype");
+	font-family: "Gibson";
+	src: url("../fonts/Gibson-Regular.ttf") format("truetype");
 }
-
-@font-face {
-	font-family: "Colaborate-Regular";
-	src: url("../fonts/ColabReg.otf") format("opentype");
-}*/
 
 /* 4. LINKS */
-
-a {
-	text-decoration: none;
-}
-
 /* 5. FIGURES & IMAGES */
 /* 6. TABLES */
 /* 7. FORMS */
 /* 8. BANNER */
 
 header {
-/*	margin-bottom: 50px; */
-	margin-bottom: 10px;
-/*	float: left; */
-	width: 460px;
-	margin-left: auto;
-	margin-right: auto;
+	background-color: #3B8183;
+	/* background-color: #3D6DCC; */
+	color: white;
+	padding: 2rem 0 0 4rem;
 }
 
-header img {
-	display: block;
-	height: 75%;
-	width: 75%;
-	margin: 0 auto;
+header h1 {
+	color: white;
+	font-size: 4.5rem;
 }
 
 /* 9. NAVIGATION */
 
-#nav {
-	/*text-transform: uppercase;*/
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	font-family: "Source Sans Pro", helvetica, sans-serif;
-	font-size: 1em;
-	padding-top: 5px;
-	/*padding-right: 0px;*/
+nav {
+	font-family: "Acre", helvetica, sans-serif;
+	font-size: 2rem;
+	padding-top: 2rem;
 }
 
-#nav li {
+nav li {
 	display: inline-block;
-	margin-bottom: 1em;
 }
 
-#nav li:first-child {
-	/*margin-left: 0px;*/
-}
-
-#nav a {
-	color: #363636;
-	padding: 3px 10px;
-	border-radius: 4px;
-}
-
-#nav a:hover {
+nav a {
 	color: white;
-	background-color: #696969;
+	padding: 0 2rem;
+	opacity: .5;
+	margin: 0;
 }
 
-#nav a#current-page {
-	color: white;
-	background-color: #363636;
+nav a#current-page {
+	opacity: 1.0;
+	text-decoration: underline;
 }
 
 
 /* 10. CONTENT */
 
-#content {
-	clear: left;
-	margin-top: 30px;
-	margin-right: 50px;
-	padding-left: 5px;
-	font-family: "Source Sans Pro", helvetica, sans-serif;
-}
-
-#home-photo {
-	/* original is 276 x 376 */
-	float: right;
-	width: 207px;
-	height: 282 px;
-	margin-left: 10px;
-	margin-bottom: 30px;
-}
-
-#copy a{
-/*	color: #bfb300;*/
-	color: #7acdc8;
-	font-weight: bold;
-}
-
-#copy a:hover{
-/*	color: #d4c600;*/
-	color: #8ae5df;
-}
-
-#copy p{
-	padding-bottom: 20px;
-}
-
 em {
 	font-style: italic;
 }
+
+section {
+	padding: 12rem 0;
+}
+
+.section1 {
+	background-color: black;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.disappear {
+	opacity: 0.0;
+}
+
+.section1 h1 {
+	background-color: rgba(237,48,60, 0.8);
+	font-size: 4vw;
+	margin-bottom: .5vw;
+	display: inline-block;
+	color: white;
+	padding: 1vw;
+}
+
+#hello {
+	padding: 0;
+	position: relative;
+	color: #FFA45F;	
+}
+
+.text-overlay {
+	position: absolute;
+	color: white;
+	top: 20%;
+	left: 15vw;
+}
+
+#hello img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	top: 0;
+}
+
+#portrait {
+	/*
+	width: 25%;
+	display: block;
+	margin: 0 auto;
+	background-color: black;
+	border-radius: 50%;
+	*/
+}
+
+.section2 {
+	background-color: #0D3B97;
+	color: white;
+}
+
+.section3 {
+	background-color: white;
+}
+
+.section3 h3 {
+	color: #FF9C5B;
+}
+
+.section3 a {
+	color: #0D3B97;
+	opacity: .7;
+}
+
+.section3 a:hover {
+	color: #0D3B97;
+	opacity: 1.0;
+}
+
 
 .contact {
 	font-style: normal;
@@ -201,39 +229,33 @@ em {
 
 
 /* 11. FOOTER */
-small {
-	font-size: .7em;
+
+footer {
+	text-align: center;
+	background-color: #404040;
+	color: white;
+	padding: 2rem 0;
 }
 
 #copyright {
-	text-align: left;
-	background-color; black;
-	color: #363636;
+	font-size: 1.5rem;	
 	font-family: "Cubano", helvetica, sans-serif;
-	padding-top: 30px;
 }
 
 /* 12. CONTACT */
-a:hover.socmedia{
-	position:relative;
-	top: -5px;
-}
 
-#linkedin img {
-	height: 45px;
-	width: 45px;
-	margin-bottom: 2px;
-}
-
-#twitter img {
+.socmedia img {
 	height: 48px;
 	width: 48px;
-} 
+	background-color: #999999;
+	border-radius: 50%;
+	opacity: .5;
+	margin: 0 1rem;
+}
 
-#cos img {
-	height: 48px;
-	width: 48px;
-} 
+.socmedia img:hover {
+	opacity: 1.0;
+}
 
 
 /* HIDE LAB ALUMNI INFO */
@@ -260,4 +282,3 @@ a:hover.socmedia{
 	width:180px;
 	height:160px;
 }
-
